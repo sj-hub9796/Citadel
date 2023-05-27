@@ -65,7 +65,7 @@ public class LegSolver {
             this.height = Mth.clamp(settledHeight, -this.range * scale, this.range * scale);
         }
 
-        protected float settle(LivingEntity entity, double x, double y, double z, float height) {
+        private float settle(LivingEntity entity, double x, double y, double z, float height) {
             BlockPos pos = new BlockPos(x, y + 1e-3, z);
             Vec3 vec3 = new Vec3(x, y, z);
             float dist = this.getDistance(entity.level, pos, vec3);
@@ -82,19 +82,14 @@ public class LegSolver {
             return height;
         }
 
-        protected float getDistance(Level world, BlockPos pos, Vec3 position) {
+        private float getDistance(Level world, BlockPos pos, Vec3 position) {
             BlockState state = world.getBlockState(pos);
             VoxelShape shape = state.getCollisionShape(world, pos);
-            if(shape.isEmpty()){
+            if (shape.isEmpty()) {
                 return 1.0F;
             }
             Optional<Vec3> closest = shape.closestPointTo(position);
-            if(closest.isEmpty()){
-                return 1.0F;
-            }else{
-                float closestY = Math.min((float)closest.get().y, 1.0F);
-                return position.y < 0.0 ? closestY : 1.0F - closestY;
-            }
+            return closest.isEmpty() ? 1.0f : 1.0f - Math.min((float)((Vec3)closest.get()).y, 1.0f);
         }
         protected float getFallSpeed() {
             return 0.25F;
