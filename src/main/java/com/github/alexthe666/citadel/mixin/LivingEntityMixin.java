@@ -5,7 +5,6 @@ import com.github.alexthe666.citadel.server.entity.ICitadelDataEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -19,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity implements ICitadelDataEntity {
 
-    private static final EntityDataAccessor<CompoundTag> CITADEL_DATA = SynchedEntityData.defineId(LivingEntity.class, EntityDataSerializers.COMPOUND_TAG);
+    private static final EntityDataAccessor<CompoundTag> CITADEL_DATA = EntityDataSerializers.COMPOUND_TAG.createAccessor(254);
 
     protected LivingEntityMixin(EntityType<? extends Entity> entityType, Level world) {
         super(entityType, world);
