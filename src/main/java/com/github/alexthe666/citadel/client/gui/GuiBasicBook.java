@@ -1,3 +1,4 @@
+
 package com.github.alexthe666.citadel.client.gui;
 
 import com.github.alexthe666.citadel.Citadel;
@@ -683,7 +684,7 @@ public abstract class GuiBasicBook extends Screen {
                 int page = 0;
                 for (int i = 0; i < splitBySpaces.size(); i++) {
                     String word = splitBySpaces.get(i);
-                    int cutoffPoint = xIndex > 100 ? 30 : 35;
+                    int cutoffPoint = xIndex > 100 ? 24 : 26;
                     boolean newline = word.equals("<NEWLINE>");
                     for (Whitespace indexes : yIndexesToSkip) {
                         int indexPage = indexes.getPage();
