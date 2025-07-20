@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity implements ICitadelDataEntity {
 
-    private static final EntityDataAccessor<CompoundTag> CITADEL_DATA = SynchedEntityData.defineId(LivingEntity.class, EntityDataSerializers.COMPOUND_TAG);
+    private static final EntityDataAccessor<CompoundTag> CITADEL_DATA = EntityDataSerializers.COMPOUND_TAG.createAccessor(254);
 
     protected LivingEntityMixin(EntityType<? extends Entity> entityType, Level world) {
         super(entityType, world);
